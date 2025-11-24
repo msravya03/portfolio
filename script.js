@@ -83,7 +83,7 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.set(".letter", { opacity: 0, y: 50 });
 gsap.set(".hero-intro, .hero-role, .hero-description, .cta-buttons", {
   opacity: 0,
-  y: 30,
+  y: 50,
 });
 
 // Animate letters
