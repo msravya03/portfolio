@@ -1,213 +1,218 @@
-// Clean Portfolio Script - Working Version
+// ===== Portfolio Script =====
 
-// Fixed Custom Cursor
-const customCursor = document.querySelector(".cursor");
-const cursorInner = document.querySelector(".cursor-inner");
+// --- Loader ---
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  setTimeout(() => {
+    loader.classList.add("hidden");
+    initHeroAnimation();
+  }, 1200);
 
-// Cursor following mouse properly
+  // Set footer year
+  const yearEl = document.getElementById("current-year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
+
+// --- Custom Cursor ---
+const cursorDot = document.querySelector(".cursor-dot");
+const cursorRing = document.querySelector(".cursor-ring");
+
+let mouseX = 0,
+  mouseY = 0;
+let ringX = 0,
+  ringY = 0;
+
 document.addEventListener("mousemove", (e) => {
-  if (customCursor) {
-    customCursor.style.left = e.clientX + "px";
-    customCursor.style.top = e.clientY + "px";
-  }
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 
-  if (cursorInner) {
-    cursorInner.style.right = e.clientX + "px";
-    cursorInner.style.top = e.clientY + "px";
-    cursorInner.style.left = e.clientX + "px";
-    cursorInner.style.bottom = e.clientY + "px";
+  if (cursorDot) {
+    cursorDot.style.left = mouseX + "px";
+    cursorDot.style.top = mouseY + "px";
   }
 });
+
+// Smooth ring follow
+function animateCursor() {
+  ringX += (mouseX - ringX) * 0.15;
+  ringY += (mouseY - ringY) * 0.15;
+
+  if (cursorRing) {
+    cursorRing.style.left = ringX + "px";
+    cursorRing.style.top = ringY + "px";
+  }
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
 
 // Cursor hover effects
-const hoverElements = document.querySelectorAll(
-  "a, button, .btn, .skill-category, .highlight-item"
-);
-
-hoverElements.forEach((el) => {
-  el.addEventListener("mouseenter", () => {
-    if (customCursor) customCursor.classList.add("hover");
-  });
-
-  el.addEventListener("mouseleave", () => {
-    if (customCursor) customCursor.classList.remove("hover");
-  });
-});
-
-// Cursor click effect
-document.addEventListener("mousedown", () => {
-  if (customCursor) customCursor.classList.add("click");
-});
-
-document.addEventListener("mouseup", () => {
-  if (customCursor) customCursor.classList.remove("click");
-});
-
-// WORKING NAVIGATION - Simple and Reliable
-function setupNavigation() {
-  // Get all navigation links
-  const navLinks = document.querySelectorAll('a[href^="#"]');
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
-
-      if (targetSection) {
-        // Get the exact position
-        const rect = targetSection.getBoundingClientRect();
-        const scrollTop = window.pageYOffset;
-        const targetPosition = rect.top + scrollTop - 80; // 80px for navbar
-
-        // Smooth scroll to target
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-
-        console.log(`Navigated to ${targetId}`);
-      }
+document
+  .querySelectorAll(
+    "a, button, .btn, .skill-card, .about-card, .project-card, .contact-card",
+  )
+  .forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursorDot?.classList.add("hover");
+      cursorRing?.classList.add("hover");
     });
+    el.addEventListener("mouseleave", () => {
+      cursorDot?.classList.remove("hover");
+      cursorRing?.classList.remove("hover");
+    });
+  });
+
+// --- Navigation ---
+function setupNavigation() {
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+  const navbar = document.getElementById("navbar");
+  const navToggle = document.getElementById("navToggle");
+  const mobileOverlay = document.getElementById("mobileOverlay");
+
+  // Smooth scroll
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href");
+      const target = document.querySelector(targetId);
+      if (target) {
+        const offset = navbar.offsetHeight;
+        const top =
+          target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+      // Close mobile menu if open
+      navToggle?.classList.remove("active");
+      mobileOverlay?.classList.remove("active");
+    });
+  });
+
+  // Mobile menu toggle
+  if (navToggle && mobileOverlay) {
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("active");
+      mobileOverlay.classList.toggle("active");
+      navToggle.setAttribute(
+        "aria-expanded",
+        navToggle.classList.contains("active"),
+      );
+    });
+  }
+
+  // Navbar scroll style
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+    updateActiveNav();
   });
 }
 
-// Initialize navigation immediately
+// Active nav link based on scroll position
+function updateActiveNav() {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
+  let current = "";
+
+  sections.forEach((section) => {
+    const top = section.offsetTop - 120;
+    if (window.scrollY >= top) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+}
+
 setupNavigation();
 
-// Simple GSAP animations without Locomotive Scroll conflicts
+// --- GSAP Animations ---
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero animations
-gsap.set(".letter", { opacity: 0, y: 50 });
-gsap.set(".hero-intro, .hero-role, .hero-description, .cta-buttons", {
-  opacity: 0,
-  y: 50,
-});
+function initHeroAnimation() {
+  const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-// Animate letters
-gsap.to(".letter", {
-  duration: 0.8,
-  opacity: 1,
-  y: 0,
-  stagger: 0.1,
-  ease: "back.out(1.7)",
-  delay: 0.5,
-});
+  tl.to(".char", {
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    stagger: 0.04,
+  })
+    .fromTo(
+      ".hero-badge",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6 },
+      "-=0.4",
+    )
+    .fromTo(
+      ".hero-tagline",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6 },
+      "-=0.2",
+    )
+    .fromTo(
+      ".hero-actions",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6 },
+      "-=0.2",
+    )
+    .fromTo(
+      ".scroll-cue",
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8 },
+      "-=0.2",
+    );
+}
 
-// Animate other hero elements
-gsap.to(".hero-intro", {
-  duration: 1,
-  opacity: 1,
-  y: 0,
-  ease: "power3.out",
-  delay: 1.5,
-});
-gsap.to(".hero-role", {
-  duration: 1,
-  opacity: 1,
-  y: 0,
-  ease: "power3.out",
-  delay: 2,
-});
-gsap.to(".hero-description", {
-  duration: 1,
-  opacity: 1,
-  y: 0,
-  ease: "power3.out",
-  delay: 2.5,
-});
-gsap.to(".cta-buttons", {
-  duration: 1,
-  opacity: 1,
-  y: 0,
-  ease: "power3.out",
-  delay: 3,
-});
-
-// Background circles
-gsap.to(".bg-circle", {
-  rotation: 360,
-  duration: 20,
-  ease: "none",
-  repeat: -1,
-});
-
-// Scroll-triggered animations
-ScrollTrigger.create({
-  trigger: ".skills",
-  start: "top 80%",
-  onEnter: () => {
-    document.querySelectorAll(".progress-bar").forEach((bar) => {
-      const width = bar.getAttribute("data-width");
-      gsap.to(bar, { width: width + "%", duration: 2, ease: "power3.out" });
-    });
-  },
-});
-
-// Section titles
-gsap.utils.toArray(".section-title").forEach((title) => {
+// Section headers
+gsap.utils.toArray(".section-header").forEach((header) => {
   gsap.fromTo(
-    title,
-    { y: 100, opacity: 0 },
+    header,
+    { y: 40, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      duration: 1.2,
+      duration: 0.8,
       ease: "power3.out",
       scrollTrigger: {
-        trigger: title,
-        start: "top 80%",
+        trigger: header,
+        start: "top 85%",
         toggleActions: "play none none reverse",
       },
-    }
+    },
   );
 });
 
-// Mobile Menu Functionality
-const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
-const mobileMenu = document.querySelector(".mobile-menu");
-
-if (mobileMenuToggle && mobileMenu) {
-  mobileMenuToggle.addEventListener("click", () => {
-    mobileMenuToggle.classList.toggle("active");
-    mobileMenu.classList.toggle("active");
-    document.body.classList.toggle("menu-open");
-  });
-
-  // Close mobile menu when clicking on a link
-  document.querySelectorAll(".mobile-nav-menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenuToggle.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      document.body.classList.remove("menu-open");
-    });
-  });
-}
-
-// Navbar scroll effect
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 100) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
+// Reveal elements
+gsap.utils.toArray(".reveal").forEach((el, i) => {
+  gsap.fromTo(
+    el,
+    { y: 40, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.7,
+      delay: (i % 4) * 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        toggleActions: "play none none reverse",
+      },
+    },
+  );
 });
-
-// Loading animation
-window.addEventListener("load", () => {
-  gsap.to("body", { opacity: 1, duration: 0.5, ease: "power2.out" });
-});
-
-// Initialize body opacity
-gsap.set("body", { opacity: 0 });
 
 // Hide cursor on mobile
-if (window.innerWidth <= 768) {
-  if (customCursor) customCursor.style.display = "none";
-  if (cursorInner) cursorInner.style.display = "none";
+if (window.innerWidth <= 1024) {
+  if (cursorDot) cursorDot.style.display = "none";
+  if (cursorRing) cursorRing.style.display = "none";
 }
 
-console.log("Portfolio script loaded successfully!");
+console.log("Portfolio loaded successfully.");

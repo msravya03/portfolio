@@ -1,319 +1,575 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sravya Malyala - Frontend Developer</title>
+    <meta
+      name="description"
+      content="Sravya Malyala — Aspiring Frontend Developer professional. BTech CSE (AI & ML) student at CMR Institute of Technology."
+    />
+    <title>Sravya Malyala — Frontend Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Custom Cursor -->
-    <div class="cursor">
-      <!-- <div class="cursor-inner"></div>  -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+      <div class="loader-inner">
+        <span class="loader-letter">S</span>
+        <span class="loader-letter">M</span>
+      </div>
     </div>
 
-    <div data-scroll-container>
-      <!-- Navigation -->
-      <nav
-        class="navbar"
-        data-scroll
-        data-scroll-sticky
-        data-scroll-target=".navbar"
-      >
-        <div class="nav-container">
-          <div class="logo">
-            <h2>SM</h2>
-          </div>
-          <ul class="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <div class="mobile-menu-toggle">
-            <span> </span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <div class="mobile-menu">
-          <ul class="mobile-nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#home" class="logo" aria-label="Home">
+          <span class="logo-text">SM</span>
+          <span class="logo-dot"></span>
+        </a>
+        <ul class="nav-menu" role="menubar">
+          <li role="none">
+            <a href="#home" role="menuitem" class="nav-link active">Home</a>
+          </li>
+          <li role="none">
+            <a href="#about" role="menuitem" class="nav-link">About</a>
+          </li>
+          <li role="none">
+            <a href="#skills" role="menuitem" class="nav-link">Skills</a>
+          </li>
+          <li role="none">
+            <a href="#projects" role="menuitem" class="nav-link">Projects</a>
+          </li>
+          <li role="none">
+            <a href="#contact" role="menuitem" class="nav-link">Contact</a>
+          </li>
+        </ul>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay">
+      <ul class="mobile-nav">
+        <li><a href="#home" class="mobile-link">Home</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#skills" class="mobile-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-link">Projects</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+
+    <main>
       <!-- Hero Section -->
-      <section id="home" class="hero" data-scroll-section>
-        <div class="hero-background">
-          <div class="animated-bg">
-            <div class="bg-circle circle-1"></div>
-            <div class="bg-circle circle-2"></div>
-            <div class="bg-circle circle-3"></div>
+      <section id="home" class="hero">
+        <div class="hero-grain"></div>
+        <div class="hero-glow hero-glow--1"></div>
+        <div class="hero-glow hero-glow--2"></div>
+        <div class="hero-glow hero-glow--3"></div>
+
+        <div class="container hero-content">
+          <div class="hero-badge">
+            <span class="status-dot"></span>
+            Available for opportunities
           </div>
-        </div>
-        <div class="hero-content">
-          <div class="hero-intro" data-scroll data-scroll-speed="2">
-            <span class="greeting">👋 Hello, I'm</span>
-          </div>
-          <h1 class="hero-title" data-scroll data-scroll-speed="1.5">
-            <span class="line name-line">
-              <span class="letter">S</span>
-              <span class="letter">r</span>
-              <span class="letter">a</span>
-              <span class="letter">v</span>
-              <span class="letter">y</span>
-              <span class="letter">a</span>
-              <!-- <span class="space"></span>
-              <span class="letter">M</span>
-              <span class="letter">a</span>
-              <span class="letter">l</span>
-              <span class="letter">y</span>
-              <span class="letter">a</span>
-              <span class="letter">l</span>
-              <span class="letter">a</span> -->
+          <h1 class="hero-name">
+            <span class="hero-name-line" aria-hidden="true">
+              <span class="char">S</span><span class="char">r</span
+              ><span class="char">a</span><span class="char">v</span
+              ><span class="char">y</span><span class="char">a</span>
             </span>
+            <span class="hero-name-line" aria-hidden="true">
+              <span class="char">M</span><span class="char">a</span
+              ><span class="char">l</span><span class="char">y</span
+              ><span class="char">a</span><span class="char">l</span
+              ><span class="char">a</span>
+            </span>
+            <span class="sr-only">Sravya Malyala</span>
           </h1>
-          <div
-            class="hero-role"
-            data-scroll
-            data-scroll-speed="1"
-            data-scroll-delay="0.1"
-          >
-            <div class="typing-container">
-              <span class="role-text">Frontend Developer</span>
-            </div>
-          </div>
-          <div
-            class="hero-description"
-            data-scroll
-            data-scroll-speed="0.5"
-            data-scroll-delay="0.2"
-          >
-            <p>
-              Crafting beautiful digital experiences with clean code and
-              creative design
-            </p>
-          </div>
-          <div
-            class="cta-buttons"
-            data-scroll
-            data-scroll-speed="0.3"
-            data-scroll-delay="0.3"
-          >
-            <a href="#about" class="btn btn-primary">
-              <span>Explore My Work</span>
-              <div class="btn-glow"></div>
+          <p class="hero-tagline">
+            <span class="tagline-accent">Frontend Developer</span> enthusiast
+            crafting intelligent solutions with clean code and creative
+            thinking.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </a>
-            <a href="#contact" class="btn btn-secondary">
-              <span>Let's Connect</span>
-              <div class="btn-glow"></div>
+            <a href="#contact" class="btn btn-ghost">
+              <span>Get in Touch</span>
+            </a>
+            <a
+              href="resume.pdf"
+              class="btn btn-outline"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>Resume</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M7 1v8M3 6l4 4 4-4M1 11v1.5A1.5 1.5 0 002.5 14h9a1.5 1.5 0 001.5-1.5V11"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </a>
           </div>
         </div>
-        <div class="scroll-indicator" data-scroll data-scroll-speed="-2">
-          <span>Discover More</span>
-          <div class="scroll-arrow">
-            <div class="arrow-line"></div>
-            <div class="arrow-head"></div>
-          </div>
+
+        <div class="scroll-cue">
+          <span>scroll</span>
+          <div class="scroll-line"></div>
         </div>
       </section>
 
       <!-- About Section -->
-      <section id="about" class="about" data-scroll-section>
+      <section id="about" class="section about">
         <div class="container">
-          <h2 class="section-title" data-scroll data-scroll-speed="1">
-            About Me
-          </h2>
-          <div class="about-content">
-            <div class="about-main" data-scroll data-scroll-speed="0.8">
-              <div class="about-text">
-                <p class="about-intro">
-                  I am Malyala Sravya, a passionate and dedicated learner with
-                  skills in web development, database management, and
-                  programming. I have experience working with C, Python, HTML,
-                  CSS, JavaScript, SQL, and DBMS.
-                </p>
-                <p class="about-mission">
-                  I enjoy building innovative and user-friendly solutions. My
-                  goal is to grow as a developer and contribute to impactful
-                  projects.
-                </p>
-              </div>
-              <div class="about-highlights" data-scroll data-scroll-speed="1.2">
-                <div class="highlight-item">
-                  <div class="highlight-number">3+</div>
-                  <div class="highlight-text">Years Learning</div>
-                </div>
-                <div class="highlight-item">
-                  <div class="highlight-number">8+</div>
-                  <div class="highlight-text">Technologies</div>
-                </div>
-                <div class="highlight-item">
-                  <div class="highlight-number">∞</div>
-                  <div class="highlight-text">Passion</div>
-                </div>
-              </div>
+          <div class="section-header">
+            <span class="section-label">01 / About</span>
+            <h2 class="section-title">About Me</h2>
+          </div>
+          <div class="about-grid">
+            <div class="about-card reveal">
+              <div class="about-card-accent"></div>
+              <span class="about-card-number">01</span>
+              <h3 class="about-card-title">Who I Am</h3>
+              <p class="about-card-text">
+                I am an aspiring
+                <strong>Frontend Developer professional</strong>
+                driven by curiosity and a strong willingness to learn and build.
+                I enjoy exploring how data and intelligence come together to
+                solve real-world problems. Along with technical skills, I bring
+                strong leadership qualities, effective time management, and a
+                proactive mindset.
+              </p>
             </div>
-            <div class="floating-elements">
-              <div
-                class="floating-shape shape-1"
-                data-scroll
-                data-scroll-speed="2"
-              ></div>
-              <div
-                class="floating-shape shape-2"
-                data-scroll
-                data-scroll-speed="-1"
-              ></div>
-              <div
-                class="floating-shape shape-3"
-                data-scroll
-                data-scroll-speed="1.5"
-              ></div>
+            <div class="about-card reveal">
+              <div class="about-card-accent"></div>
+              <span class="about-card-number">02</span>
+              <h3 class="about-card-title">Education</h3>
+              <p class="about-card-text">
+                Currently pursuing
+                <strong
+                  >BTech in Computer Science and Engineering (AI & ML)</strong
+                >
+                at <strong>CMR Institute of Technology</strong>, maintaining a
+                <strong>CGPA of 8.53</strong>. This reflects my academic
+                consistency, discipline, and deep interest in emerging AI and
+                data technologies.
+              </p>
+            </div>
+            <div class="about-card reveal">
+              <div class="about-card-accent"></div>
+              <span class="about-card-number">03</span>
+              <h3 class="about-card-title">Vision & Mindset</h3>
+              <p class="about-card-text">
+                I strongly believe in continuous learning, experimentation, and
+                innovation. I actively seek opportunities to expand my skill
+                set, work on real-world projects, and stay aligned with evolving
+                industry trends. My long-term goal is to grow into an AI
+                professional who builds scalable, impactful, and intelligent
+                systems that create meaningful value.
+              </p>
+            </div>
+            <div class="about-card reveal">
+              <div class="about-card-accent"></div>
+              <span class="about-card-number">04</span>
+              <h3 class="about-card-title">Technical Strengths</h3>
+              <p class="about-card-text">
+                Strong knowledge of
+                <strong>HTML, CSS, and JavaScript</strong> to build responsive
+                web pages, with hands-on experience using
+                <strong>React</strong> for creating interactive user interfaces.
+                Well-versed in <strong>responsive design</strong> and browser
+                compatibility, with the ability to
+                <strong>integrate APIs</strong> and manage application data
+                smoothly. Familiar with <strong>Git</strong>, debugging, and
+                modern front-end development practices.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Skills Section -->
-      <section id="skills" class="skills" data-scroll-section>
+      <section id="skills" class="section skills">
         <div class="container">
-          <h2 class="section-title" data-scroll data-scroll-speed="1">
-            Skills & Technologies
-          </h2>
-          <div class="skills-description" data-scroll data-scroll-speed="0.8">
-            <p>Technologies I work with to bring ideas to life</p>
+          <div class="section-header">
+            <span class="section-label">02 / Skills</span>
+            <h2 class="section-title">Tech Stack</h2>
           </div>
           <div class="skills-grid">
-            <div class="skill-category" data-scroll data-scroll-speed="0.6">
-              <div class="skill-icon">🎨</div>
-              <h3>Frontend</h3>
-              <div class="skill-list">
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">JavaScript</span>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                  alt="HTML5"
+                  loading="lazy"
+                />
               </div>
-              <div class="skill-progress">
-                <div class="progress-bar" data-width="90"></div>
-              </div>
+              <span class="skill-name">HTML5</span>
             </div>
-            <div class="skill-category" data-scroll data-scroll-speed="0.8">
-              <div class="skill-icon">⚙️</div>
-              <h3>Backend</h3>
-              <div class="skill-list">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">Node.js</span>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                  alt="CSS3"
+                  loading="lazy"
+                />
               </div>
-              <div class="skill-progress">
-                <div class="progress-bar" data-width="85"></div>
-              </div>
+              <span class="skill-name">CSS3</span>
             </div>
-            <div class="skill-category" data-scroll data-scroll-speed="1.0">
-              <div class="skill-icon">🗄️</div>
-              <h3>Database</h3>
-              <div class="skill-list">
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">DBMS</span>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  alt="JavaScript"
+                  loading="lazy"
+                />
               </div>
-              <div class="skill-progress">
-                <div class="progress-bar" data-width="80"></div>
+              <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+                  alt="Tailwind CSS"
+                  loading="lazy"
+                />
               </div>
+              <span class="skill-name">Tailwind</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+                  alt="C"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">C</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                  alt="Python"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">Python</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                  alt="Java"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">Java</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                  alt="Node.js"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">Node.js</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+                  alt="SQL"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">SQL</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                  alt="Git"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">Git</span>
+            </div>
+            <div class="skill-card reveal">
+              <div class="skill-icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                  alt="GitHub"
+                  loading="lazy"
+                />
+              </div>
+              <span class="skill-name">GitHub</span>
             </div>
           </div>
-          <div class="skills-visual" data-scroll data-scroll-speed="0.5">
-            <div class="code-snippet">
-              <div class="code-header">
-                <div class="code-dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section projects">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-label">03 / Projects</span>
+            <h2 class="section-title">Selected Work</h2>
+          </div>
+          <div class="projects-list">
+            <article class="project-card reveal">
+              <div class="project-number">01</div>
+              <div class="project-body">
+                <h3 class="project-title">Hospital Management System</h3>
+                <p class="project-desc">
+                  Built a hospital management system utilizing SQL and DBMS
+                  concepts for efficient patient, doctor, and appointment
+                  tracking.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">SQL</span>
+                  <span class="tag">DBMS</span>
                 </div>
-                <span class="code-title">passion.js</span>
               </div>
-              <div class="code-content">
-                <span class="code-line"
-                  ><span class="keyword">const</span>
-                  <span class="variable">developer</span> = {</span
-                >
-                <span class="code-line">
-                  <span class="property">name</span>:
-                  <span class="string">"Sravya"</span>,</span
-                >
-                <span class="code-line">
-                  <span class="property">passion</span>:
-                  <span class="string">"infinite"</span>,</span
-                >
-                <span class="code-line">
-                  <span class="property">mission</span>:
-                  <span class="string"
-                    >"create amazing web experiences"</span
-                  ></span
-                >
-                <span class="code-line">};</span>
+              <div class="project-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 17L17 7M17 7H7M17 7v10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
               </div>
-            </div>
+            </article>
+            <article class="project-card reveal">
+              <div class="project-number">02</div>
+              <div class="project-body">
+                <h3 class="project-title">My To-Do List</h3>
+                <p class="project-desc">
+                  A web app that allows users to add, edit, and delete daily
+                  tasks effortlessly. Organizes tasks for better productivity
+                  and tracks completion status.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+              </div>
+              <div class="project-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 17L17 7M17 7H7M17 7v10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </article>
+            <article class="project-card reveal">
+              <div class="project-number">03</div>
+              <div class="project-body">
+                <h3 class="project-title">Vendor Bid Evaluation</h3>
+                <p class="project-desc">
+                  Analyzed cost, quality, and delivery timelines to support
+                  effective procurement decisions. Prepared comparative reports
+                  and coordinated with vendors to ensure compliance.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Procurement</span>
+                  <span class="tag">Analysis</span>
+                </div>
+              </div>
+              <div class="project-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 17L17 7M17 7H7M17 7v10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </article>
+            <article class="project-card reveal">
+              <div class="project-number">04</div>
+              <div class="project-body">
+                <h3 class="project-title">Personal Portfolio</h3>
+                <p class="project-desc">
+                  Designed and developed a modern, responsive portfolio website
+                  with smooth GSAP animations, pastel-themed UI, custom cursor,
+                  and a clean layout to showcase skills and projects.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">GSAP</span>
+                </div>
+              </div>
+              <div class="project-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M7 17L17 7M17 7H7M17 7v10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="contact" data-scroll-section>
+      <section id="contact" class="section contact">
         <div class="container">
-          <h2 class="section-title" data-scroll data-scroll-speed="1">
-            Get In Touch
-          </h2>
-          <div class="contact-content">
-            <div class="contact-info" data-scroll data-scroll-speed="0.8">
-              <p>Ready to work together? Let's connect!</p>
-              <div class="contact-links">
-                <a href="mailto:sravyam1313@gmail.com" class="contact-link">
-                  <span class="icon">📧</span>
-                  <span>sravyam1313@gmail.com</span>
-                </a>
-                <a
-                  href="https://github.com/msravya03"
-                  target="_blank"
-                  class="contact-link"
-                >
-                  <span class="icon">💻</span>
-                  <span>GitHub</span>
-                </a>
+          <div class="section-header section-header--center">
+            <span class="section-label">04 / Contact</span>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">
+              Ready to collaborate or just want to say hello? Reach out through
+              any of the channels below.
+            </p>
+          </div>
+          <div class="contact-grid">
+            <a href="mailto:sravyam1313@gmail.com" class="contact-card reveal">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="2"
+                    y="4"
+                    width="20"
+                    height="16"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M2 7l10 7 10-7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
               </div>
-            </div>
+              <span class="contact-label">Email</span>
+              <span class="contact-value">sravyam1313@gmail.com</span>
+            </a>
+            <a
+              href="https://github.com/msravya03"
+              target="_blank"
+              rel="noopener"
+              class="contact-card reveal"
+            >
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">msravya03</span>
+            </a>
+            <a
+              href="https://leetcode.com/u/msravya03/"
+              target="_blank"
+              rel="noopener"
+              class="contact-card reveal"
+            >
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M13.483 0a1.374 1.374 0 00-.961.442L7.116 6.549a3.658 3.658 0 00-1.078 2.606v.095c-.001.262.021.524.068.782a3.66 3.66 0 001.01 1.824l5.406 5.407a1.374 1.374 0 001.942 0l5.406-5.407a3.659 3.659 0 001.01-1.824 3.66 3.66 0 00.068-.782v-.095a3.658 3.658 0 00-1.078-2.606L14.464.442A1.374 1.374 0 0013.483 0z"
+                    fill="currentColor"
+                    transform="scale(0.85) translate(2,3)"
+                  />
+                </svg>
+              </div>
+              <span class="contact-label">LeetCode</span>
+              <span class="contact-value">msravya03</span>
+            </a>
+            <a
+              href="https://www.codechef.com/users/msravya_13"
+              target="_blank"
+              rel="noopener"
+              class="contact-card reveal"
+            >
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <span class="contact-label">CodeChef</span>
+              <span class="contact-value">msravya_13</span>
+            </a>
           </div>
         </div>
       </section>
+    </main>
 
-      <!-- Footer -->
-      <footer class="footer" data-scroll-section>
-        <div class="container">
-          <p data-scroll data-scroll-speed="0.5">
-            &copy; <span id="current-year"></span> Sravya Malyala. All rights
-            reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">
+          &copy; <span id="current-year"></span> Sravya Malyala
+        </p>
+        <p class="footer-tag">Designed & Built with care</p>
+      </div>
+    </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
-    <script>
-      document.getElementById("current-year").textContent =
-        new Date().getFullYear();
-    </script>
   </body>
 </html>
