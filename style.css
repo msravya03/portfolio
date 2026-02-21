@@ -967,6 +967,70 @@ a {
   opacity: 1;
 }
 
+/* ===== LEETCODE BADGES ===== */
+.badges-header {
+  margin-top: 3rem;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.badge-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.badge-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(124, 92, 191, 0.08);
+}
+
+.badge-img-wrap {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.badge-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.badge-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+
+.badge-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 /* ===== CONTACT ===== */
 .contact {
   background: var(--bg);
@@ -1136,6 +1200,10 @@ a {
   }
 
   .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .badges-grid {
     grid-template-columns: 1fr;
   }
 
